@@ -1,0 +1,150 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Security.AccessControl;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Xml;
+
+namespace Ejercicio7_ISC32
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            /*
+            int numero=1;
+            do
+            {
+                Console.WriteLine(numero);
+                numero = numero + 1;//numero++
+            } while (numero <= 10);
+            */
+
+            /*
+            int numero = 1;
+            while(numero<=10)
+            {
+                Console.WriteLine(numero);
+                numero++;
+            }
+            */
+
+            /*
+            for(int numero=10;numero>=1;numero--)
+            {
+                Console.WriteLine(numero);
+            }*/
+            string contraseña = string.Empty;
+            int numIntentos = 1;
+            Console.WriteLine("***** Bienvenido a mi Programa de Contraseña de Acceso *****");
+            do
+            {
+                Console.WriteLine("\nIntento: " + numIntentos);
+                if (numIntentos == 4)
+                {
+                    Console.WriteLine("Tus Intentos se Agotaron, Bye Bye Bye!!!!");
+                    //break;
+                    Console.Beep();
+                    Thread.Sleep(2000);
+                    Environment.Exit(0);
+                }
+                Console.Write("\n\nIntroduce la Contraseña de Acceso: ");
+                contraseña=Console.ReadLine();
+                numIntentos++;
+                if (contraseña == "pocahontas")
+                {
+                    Console.WriteLine("Hola Amig@, haz logrado ingresar al programa");
+                    menuPrograma();
+                }
+                else
+                {
+                    Console.WriteLine("Contraseña Incorrecta");
+                }
+            } while (contraseña!="pocahontas");
+
+            Console.ReadKey();
+        }
+
+        static void menuPrograma()
+        {
+            int valor = 0;
+            byte op = 0;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("MENU DE OPCIONES");
+                Console.WriteLine("1.- Suma de 2 Valores");
+                Console.WriteLine("2.- Resta de 2 Valores");
+                Console.WriteLine("3.- Multiplicación de 2 Valores");
+                Console.WriteLine("4.- Raiz Cuadrada del Valor Obtenido en la Opción 3");
+                Console.WriteLine("5.- Salir");
+                Console.Write("\n\nElige una Opción: ");
+                op = byte.Parse(Console.ReadLine());
+                Console.WriteLine();
+                switch (op)
+                {
+                    case 1: { suma(); break; }
+                    case 2: { resta(); break; }
+                    case 3: { valor = multiplicacion(); break; }
+                    case 4: { raizCuadrada(valor); break; }
+                    case 5:
+                        {
+                            Console.WriteLine("Bye Bye Bye ......");
+                            Console.Beep();
+                            Thread.Sleep(2000);
+                            Environment.Exit(0);
+                            break;
+                        }
+                    default: { Console.WriteLine("Opcion Inexistente");Thread.Sleep(1000); break; }
+                }
+            }while(op!=5);
+        }
+
+        static void suma()
+        {
+            double v1, v2;
+            Console.Write("Escribe un valor numerico: ");
+            v1 = double.Parse(Console.ReadLine());
+            Console.Write("Escribe otro valor numerico: ");
+            v2 = double.Parse(Console.ReadLine());
+            Console.WriteLine($"El resultado de la suma de los valores introducidos, es: {v1 + v2}");
+            Console.ReadKey();
+        }
+
+        static void resta()
+        {
+            double v1, v2;
+            Console.Write("Escribe un valor numerico: ");
+            v1 = double.Parse(Console.ReadLine());
+            Console.Write("Escribe otro valor numerico: ");
+            v2 = double.Parse(Console.ReadLine());
+            Console.WriteLine($"El resultado de la resta de los valores introducidos, es: {v1 - v2}");
+            Console.ReadKey();
+        }
+
+        static int multiplicacion()
+        {
+            int resMulti = 0;
+            int v1, v2;
+            Console.Write("Escribe un valor numerico: ");
+            v1 = int.Parse(Console.ReadLine());
+            Console.Write("Escribe otro valor numerico: ");
+            v2 = int.Parse(Console.ReadLine());
+            resMulti=v1*v2;
+            Console.WriteLine($"El resultado de la multiplicacion de los valores introducidos, es: {v1 * v2}");
+            Console.ReadKey();
+            return resMulti;
+        }
+
+        static void raizCuadrada(int valor)
+        {
+            Console.WriteLine("El valor generado en la opcion 3, fue: " + valor);
+            Console.WriteLine("La Raiz Cuadrada del valor generao en la opcion 3, es:"+Math.Sqrt(valor));
+            Console.ReadKey();
+        }
+    }
+}
