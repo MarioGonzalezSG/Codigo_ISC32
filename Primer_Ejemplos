@@ -16,15 +16,6 @@ namespace Ejercicio7_ISC32
         static void Main(string[] args)
         {
             /*
-            int numero=1;
-            do
-            {
-                Console.WriteLine(numero);
-                numero = numero + 1;//numero++
-            } while (numero <= 10);
-            */
-
-            /*
             int numero = 1;
             while(numero<=10)
             {
